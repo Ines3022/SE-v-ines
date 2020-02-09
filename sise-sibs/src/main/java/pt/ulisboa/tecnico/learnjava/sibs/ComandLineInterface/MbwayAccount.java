@@ -3,18 +3,16 @@ package pt.ulisboa.tecnico.learnjava.sibs.ComandLineInterface;
 import java.util.Random;
 
 import pt.ulisboa.tecnico.learnjava.bank.exceptions.ServicesException;
-import pt.ulisboa.tecnico.learnjava.bank.services.Services;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.MbwayException;
 
 public class MbwayAccount {
 	private String iban;
 	private String phoneNumber;
 	private Integer code;
-	private Services service;
+//	private Services service;
 	private boolean status;
 
 	public MbwayAccount(String iban, String phoneNumber, Mbway mbway) throws MbwayException {
-		this.service = mbway.getSibs().getServices();
 		this.status = false;
 
 		if (this.checkParameters(iban, phoneNumber, mbway)) {
@@ -34,7 +32,7 @@ public class MbwayAccount {
 			;
 		{
 			try {
-				this.service.getAccountByIban(iban);
+				mbway.getSibs().getServices().getAccountByIban(iban);
 				return mbway.checkExistingIban(iban) ? false : true;
 
 			} catch (ServicesException e) {
