@@ -13,6 +13,7 @@ public class MbwayAccount {
 	private boolean status;
 
 	public MbwayAccount(String iban, String phoneNumber, Mbway mbway) throws MbwayException {
+//		this.service = mbway.getSibs().getServices();
 		this.status = false;
 
 		if (this.checkParameters(iban, phoneNumber, mbway)) {
@@ -32,6 +33,7 @@ public class MbwayAccount {
 			;
 		{
 			try {
+//				this.service.getAccountByIban(iban);
 				mbway.getSibs().getServices().getAccountByIban(iban);
 				return mbway.checkExistingIban(iban) ? false : true;
 

@@ -2,19 +2,18 @@ package pt.ulisboa.tecnico.learnjava.sibs.ComandLineInterface;
 
 import java.util.HashMap;
 
-import pt.ulisboa.tecnico.learnjava.bank.services.Services;
 import pt.ulisboa.tecnico.learnjava.sibs.domain.Sibs;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.MbwayException;
 
 public class Mbway {
 
 	private Sibs sibs;
-	private Services service = new Services();
+//	private Services service = new Services();
 	private HashMap<String, MbwayAccount> mbwayAccounts = new HashMap<>();
 	public static Mbway instance = null;
 
 	public Mbway() {
-		this.sibs = new Sibs(100, this.service);
+//		this.sibs = new Sibs(100, this.service);
 	}
 
 	public static Mbway getInstance() {
