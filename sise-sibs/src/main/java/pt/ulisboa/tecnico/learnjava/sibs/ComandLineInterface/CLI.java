@@ -1,5 +1,6 @@
 package pt.ulisboa.tecnico.learnjava.sibs.ComandLineInterface;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import pt.ulisboa.tecnico.learnjava.bank.domain.Bank;
@@ -9,16 +10,18 @@ import pt.ulisboa.tecnico.learnjava.bank.exceptions.AccountException;
 import pt.ulisboa.tecnico.learnjava.bank.exceptions.BankException;
 import pt.ulisboa.tecnico.learnjava.bank.exceptions.ClientException;
 import pt.ulisboa.tecnico.learnjava.bank.exceptions.ServicesException;
+import pt.ulisboa.tecnico.learnjava.bank.services.Services;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.MbwayException;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.OperationException;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.SibsException;
 
-public class ControlerMain {
+public class CLI {
 
 	public static void main(String[] args) throws MbwayException, BankException, ClientException, AccountException,
 			SibsException, OperationException, ServicesException {
 
 		Mbway mbway = Mbway.getInstance();
+		Services services = new Services();
 		Bank bank = new Bank("CGD");
 		Bank bank1 = new Bank("CTT");
 		Client client1 = new Client(bank, "Rute", "Costa", "123456789", null, "Rua das Libelinhas", 23);
@@ -36,10 +39,6 @@ public class ControlerMain {
 		bank.createAccount(AccountType.CHECKING, client2, 1000, 0);
 		bank.createAccount(AccountType.CHECKING, client3, 1000, 0);
 		bank.createAccount(AccountType.CHECKING, client4, 1000, 0);
-		MbwayAccount mbwayAccount;
-		ConfirmMbway confirmMbway;
-		MbwayTransfer mbwayTransfer;
-		MbwaySplitBill mbwaySplitBill;
 
 		while (true) {
 
@@ -67,37 +66,37 @@ public class ControlerMain {
 
 			switch (Comando[0]) {
 			case ("associate-mbway"):
-				mbwayAccount = new MbwayAccount(Comando[1], Comando[2]);
+				new MbwayAccount(Comando[1], Comando[2], mbway);
 				break;
 			case ("confirm-mbway"):
-				confirmMbway = new ConfirmMbway(Comando[1], Integer.parseInt(Comando[2]));
+				new ConfirmMbway(Comando[1], Integer.parseInt(Comando[2]), mbway);
 				break;
 			case ("mbway-transfer"):
-				mbwayTransfer = new MbwayTransfer(Comando[1], Comando[2], Integer.parseInt(Comando[3]));
+				new MbwayTransfer(Comando[1], Comando[2], Integer.parseInt(Comando[3]), mbway);
 				break;
 			case ("mbway-split-bill"):
 				boolean keepGoing = true;
+				ArrayList<Friend> listOfFriends = new ArrayList<>();
 				System.out.println("Please insert friend");
+
 				while (keepGoing) {
 
 					String dividirConta = input.nextLine();
-					String[] friend = dividirConta.split(" ");
+					String[] comandoFriend = dividirConta.split(" ");
 
-					switch (friend[0]) {
+					switch (comandoFriend[0]) {
 					case ("friend"):
-						new ReadFriendsInput(Integer.parseInt(Comando[1]), friend[1], Integer.parseInt(friend[2]));
+						listOfFriends.add(new Friend(comandoFriend[1], Integer.parseInt(comandoFriend[2]), mbway));
 						break;
 
 					case ("end"):
-						new ReadEndInput(Integer.parseInt(Comando[1]));
 						keepGoing = false;
 						break;
-
 					default:
 						System.out.println("Input not valid, please insert friend!");
 					}
 				}
-				mbwaySplitBill = new MbwaySplitBill(Integer.parseInt(Comando[1]), Integer.parseInt(Comando[2]));
+				new MbwaySplitBill(Integer.parseInt(Comando[1]), Integer.parseInt(Comando[2]), mbway, listOfFriends);
 				break;
 
 			case ("exit"):
