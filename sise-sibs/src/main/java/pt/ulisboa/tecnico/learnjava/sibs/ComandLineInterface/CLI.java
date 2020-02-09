@@ -3,14 +3,10 @@ package pt.ulisboa.tecnico.learnjava.sibs.ComandLineInterface;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import pt.ulisboa.tecnico.learnjava.bank.domain.Bank;
-import pt.ulisboa.tecnico.learnjava.bank.domain.Bank.AccountType;
-import pt.ulisboa.tecnico.learnjava.bank.domain.Client;
 import pt.ulisboa.tecnico.learnjava.bank.exceptions.AccountException;
 import pt.ulisboa.tecnico.learnjava.bank.exceptions.BankException;
 import pt.ulisboa.tecnico.learnjava.bank.exceptions.ClientException;
 import pt.ulisboa.tecnico.learnjava.bank.exceptions.ServicesException;
-import pt.ulisboa.tecnico.learnjava.bank.services.Services;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.MbwayException;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.OperationException;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.SibsException;
@@ -21,24 +17,24 @@ public class CLI {
 			SibsException, OperationException, ServicesException {
 
 		Mbway mbway = Mbway.getInstance();
-		Services services = new Services();
-		Bank bank = new Bank("CGD");
-		Bank bank1 = new Bank("CTT");
-		Client client1 = new Client(bank, "Rute", "Costa", "123456789", null, "Rua das Libelinhas", 23);
-		Client client2 = new Client(bank, "Ines", "Agulheiro", "123000789", null, "Rua das Borboletas", 24);
-		Client client3 = new Client(bank, "Miguel", "Carreto", "123456000", null, "Rua das Formigas", 23);
-		Client client4 = new Client(bank, "Duarte", "Matos", "000456789", null, "Rua das Carochinhas", 25);
-		Client client5 = new Client(bank1, "Rafael", "Matos", "000056789", null, "Rua das Carochinhas", 25);
-		bank1.addClient(client5);
-		bank.addClient(client1);
-		bank.addClient(client2);
-		bank.addClient(client3);
-		bank.addClient(client4);
-		bank1.createAccount(AccountType.CHECKING, client5, 1000, 0);
-		bank.createAccount(AccountType.CHECKING, client1, 1000, 0);
-		bank.createAccount(AccountType.CHECKING, client2, 1000, 0);
-		bank.createAccount(AccountType.CHECKING, client3, 1000, 0);
-		bank.createAccount(AccountType.CHECKING, client4, 1000, 0);
+//		Services services = new Services();
+//		Bank bank = new Bank("CGD");
+//		Bank bank1 = new Bank("CTT");
+//		Client client1 = new Client(bank, "Rute", "Costa", "123456789", null, "Rua das Libelinhas", 23);
+//		Client client2 = new Client(bank, "Ines", "Agulheiro", "123000789", null, "Rua das Borboletas", 24);
+//		Client client3 = new Client(bank, "Miguel", "Carreto", "123456000", null, "Rua das Formigas", 23);
+//		Client client4 = new Client(bank, "Duarte", "Matos", "000456789", null, "Rua das Carochinhas", 25);
+//		Client client5 = new Client(bank1, "Rafael", "Matos", "000056789", null, "Rua das Carochinhas", 25);
+//		bank1.addClient(client5);
+//		bank.addClient(client1);
+//		bank.addClient(client2);
+//		bank.addClient(client3);
+//		bank.addClient(client4);
+//		bank1.createAccount(AccountType.CHECKING, client5, 1000, 0);
+//		bank.createAccount(AccountType.CHECKING, client1, 1000, 0);
+//		bank.createAccount(AccountType.CHECKING, client2, 1000, 0);
+//		bank.createAccount(AccountType.CHECKING, client3, 1000, 0);
+//		bank.createAccount(AccountType.CHECKING, client4, 1000, 0);
 
 		while (true) {
 
